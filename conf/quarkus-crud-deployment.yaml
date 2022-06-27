@@ -5,7 +5,7 @@ metadata:
     app: quarkus-crud
   name: quarkus-crud
 spec:
-  replicas: 1
+  replicas: 14
   selector:
     matchLabels:
       deployment: quarkus-crud

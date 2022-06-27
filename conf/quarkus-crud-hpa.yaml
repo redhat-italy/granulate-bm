@@ -9,10 +9,10 @@ metadata:
       metrics API"}]'
   name: quarkus-crud
 spec:
-  maxReplicas: 50
+  maxReplicas: 14
   minReplicas: 1
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
     name: quarkus-crud
-  targetCPUUtilizationPercentage: 80
+  targetCPUUtilizationPercentage: 100

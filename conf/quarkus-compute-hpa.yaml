@@ -15,4 +15,4 @@ spec:
     apiVersion: apps/v1
     kind: Deployment
     name: quarkus-compute
-  targetCPUUtilizationPercentage: 80
+  targetCPUUtilizationPercentage: 100
