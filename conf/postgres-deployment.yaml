@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: postgresql-12
+  name: postgresql-12
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      deployment: postgresql-12
+  template:
+    metadata:
+      labels:
+        deployment: postgresql-12
+    spec:
+      containers:
+      - env:
+        - name: POSTGRESQL_PASSWORD
+          valueFrom:
+            configMapKeyRef:
+              key: password
+              name: db-configs
+        - name: POSTGRESQL_USER
+          valueFrom:
+            configMapKeyRef:
+              key: user
+              name: db-configs
+        - name: POSTGRESQL_DATABASE
+          valueFrom:
+            configMapKeyRef:
+              key: database
+              name: db-configs
+        image: registry.redhat.io/rhel8/postgresql-12:latest
+        name: postgresql-12
+        ports:
+        - containerPort: 5432
+          protocol: TCP
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: 2Gi
+            cpu: 250m

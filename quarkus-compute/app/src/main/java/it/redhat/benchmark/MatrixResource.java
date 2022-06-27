@@ -16,21 +16,21 @@ public class MatrixResource {
     private static final Logger LOG = Logger.getLogger(MatrixResource.class);
 
 
-    private FloatMatrix FloatMatrix;
+    private FloatMatrix floatMatrix;
     private List<Double> floatMatrixTimes;
 
-    public void initFloatMatrix(int rows, int cols) {
-        this.FloatMatrix = new FloatMatrix(rows, cols);
-        this.FloatMatrix.initRandomData();
+    public void initFloatMatrix() {
+        this.floatMatrix = new FloatMatrix();
+        this.floatMatrix.initRandomData();
 
         this.floatMatrixTimes = new ArrayList<>();
 
-        LOG.info("Float Matrix " + rows + "x" + cols + " initialized with random values");
+        LOG.info("Float Matrix " + FloatMatrix.N_ROWS + "x" + FloatMatrix.N_COLS + " initialized with random values");
     }
 
     public void correlateFloatMatrix() {
         double startTime = System.currentTimeMillis();
-        this.FloatMatrix.computeCorrelationMatrix();
+        this.floatMatrix.computeCorrelationMatrix();
         double time = (System.currentTimeMillis() - startTime)/1000;
 
         this.floatMatrixTimes.add(time);

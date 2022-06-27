@@ -3,9 +3,16 @@ package it.redhat.benchmark.matrix;
 import java.util.Random;
 
 public class FloatMatrix {
-    private float[] data;
-    private int rows;
-    private int columns;
+    private final float[] data;
+    private final int rows;
+    private final int columns;
+
+    public static final int N_ROWS = 1000;
+    public static final int N_COLS = 3000;
+
+    public FloatMatrix() {
+        this(N_ROWS, N_COLS);
+    }
 
     public FloatMatrix(int rows, int columns) {
         this.rows = rows;

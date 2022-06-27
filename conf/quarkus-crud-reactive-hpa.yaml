@@ -1,0 +1,18 @@
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+  annotations:
+    autoscaling.alpha.kubernetes.io/conditions: '[{"type":"AbleToScale","status":"True","lastTransitionTime":"2022-06-27T09:48:48Z","reason":"SucceededGetScale","message":"the
+      HPA controller was able to get the target''s current scale"},{"type":"ScalingActive","status":"False","lastTransitionTime":"2022-06-27T09:49:18Z","reason":"FailedGetResourceMetric","message":"the
+      HPA was unable to compute the replica count: failed to get cpu utilization:
+      unable to get metrics for resource cpu: no metrics returned from resource
+      metrics API"}]'
+  name: quarkus-crud-reactive
+spec:
+  maxReplicas: 50
+  minReplicas: 1
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: quarkus-crud-reactive
+  targetCPUUtilizationPercentage: 80

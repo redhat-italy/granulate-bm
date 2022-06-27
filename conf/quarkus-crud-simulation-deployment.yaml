@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: quarkus-crud-simulation
+  name: quarkus-crud-simulation
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      deployment: quarkus-crud-simulation
+  template:
+    metadata:
+      labels:
+        deployment: quarkus-crud-simulation
+    spec:
+      containers:
+      - image: quay.io/vsantoma/jmeter:latest
+        name: jmeter
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+        - containerPort: 8443
+          protocol: TCP
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: 2Gi
+            cpu: 250m
+        volumeMounts:
+        - mountPath: /inputs
+          name: jmeter-volume-1
+      volumes:
+      - configMap:
+          defaultMode: 420
+          name: quarkus-crud-simulation
+        name: jmeter-volume-1

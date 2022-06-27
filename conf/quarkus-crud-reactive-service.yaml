@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: quarkus-crud-reactive
+  name: quarkus-crud-reactive
+spec:
+  ports:
+  - name: 8080-tcp
+    port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    deployment: quarkus-crud-reactive
+  type: ClusterIP

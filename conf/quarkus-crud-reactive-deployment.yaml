@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: quarkus-crud-reactive
+  name: quarkus-crud-reactive
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      deployment: quarkus-crud-reactive
+  template:
+    metadata:
+      labels:
+        deployment: quarkus-crud-reactive
+    spec:
+      containers:
+      - env:
+        - name: DB_DATABASE
+          valueFrom:
+            configMapKeyRef:
+              key: database
+              name: db-configs
+        - name: DB_PASSWORD
+          valueFrom:
+            configMapKeyRef:
+              key: password
+              name: db-configs
+        - name: DB_USER
+          valueFrom:
+            configMapKeyRef:
+              key: user
+              name: db-configs
+        image: quay.io/vsantoma/quarkus-crud-reactive:latest
+        name: quarkus-crud-reactive
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: 2Gi
+            cpu: 1500m
