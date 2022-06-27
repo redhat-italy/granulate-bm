@@ -2,17 +2,17 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: postgresql
-  name: postgresql
+    app: postgresql-reactive
+  name: postgresql-reactive
 spec:
   replicas: 1
   selector:
     matchLabels:
-      deployment: postgresql
+      deployment: postgresql-reactive
   template:
     metadata:
       labels:
-        deployment: postgresql
+        deployment: postgresql-reactive
     spec:
       containers:
       - env:

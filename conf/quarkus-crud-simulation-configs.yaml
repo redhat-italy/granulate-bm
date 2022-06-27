@@ -16,7 +16,7 @@ data:
     guiclass=\"LoopControlPanel\" testclass=\"LoopController\" testname=\"Loop Controller\"
     enabled=\"true\">\n          <boolProp name=\"LoopController.continue_forever\">false</boolProp>\n
     \         <stringProp name=\"LoopController.loops\">1</stringProp>\n        </elementProp>\n
-    \       <stringProp name=\"ThreadGroup.num_threads\">1</stringProp>\n        <stringProp
+    \       <stringProp name=\"ThreadGroup.num_threads\">10</stringProp>\n        <stringProp
     name=\"ThreadGroup.ramp_time\">1</stringProp>\n        <boolProp name=\"ThreadGroup.scheduler\">false</boolProp>\n
     \       <stringProp name=\"ThreadGroup.duration\"></stringProp>\n        <stringProp
     name=\"ThreadGroup.delay\"></stringProp>\n        <boolProp name=\"ThreadGroup.same_user_on_next_iteration\">true</boolProp>\n
@@ -130,7 +130,7 @@ data:
     guiclass=\"LoopControlPanel\" testclass=\"LoopController\" testname=\"Loop Controller\"
     enabled=\"true\">\n          <boolProp name=\"LoopController.continue_forever\">false</boolProp>\n
     \         <stringProp name=\"LoopController.loops\">1</stringProp>\n        </elementProp>\n
-    \       <stringProp name=\"ThreadGroup.num_threads\">10</stringProp>\n        <stringProp
+    \       <stringProp name=\"ThreadGroup.num_threads\">100</stringProp>\n        <stringProp
     name=\"ThreadGroup.ramp_time\">1</stringProp>\n        <boolProp name=\"ThreadGroup.scheduler\">false</boolProp>\n
     \       <stringProp name=\"ThreadGroup.duration\"></stringProp>\n        <stringProp
     name=\"ThreadGroup.delay\"></stringProp>\n        <boolProp name=\"ThreadGroup.same_user_on_next_iteration\">true</boolProp>\n
@@ -173,7 +173,7 @@ data:
     \           <sentBytes>true</sentBytes>\n            <url>true</url>\n            <threadCounts>true</threadCounts>\n
     \           <idleTime>true</idleTime>\n            <connectTime>true</connectTime>\n
     \         </value>\n        </objProp>\n        <stringProp name=\"filename\"></stringProp>\n
-    \     </ResultCollector>\n      <hashTree/>\n    </hashTree>\n  </hashTree>\n</jmeterTestPlan>\n"
+    \     </ResultCollector>\n      <hashTree/>\n    </hashTree>\n  </hashTree>\n</jmeterTestPlan>"
 kind: ConfigMap
 metadata:
   name: quarkus-crud-simulation

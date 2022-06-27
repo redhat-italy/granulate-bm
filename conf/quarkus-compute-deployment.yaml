@@ -30,4 +30,4 @@ spec:
             cpu: "250m"
           limits:
             memory: 2Gi
-            cpu: 1500m
+            cpu: 2500m
