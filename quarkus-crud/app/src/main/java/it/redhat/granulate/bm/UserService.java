@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.inject.Singleton;
 import javax.transaction.Transactional;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -11,16 +12,16 @@ import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import org.jboss.resteasy.annotations.jaxrs.PathParam;
-
 @Path("/users")
-@Produces(MediaType.APPLICATION_JSON)
-@Consumes(MediaType.APPLICATION_JSON)
+@Singleton
 public class UserService {
+
+    private int first_id = 1;
 
     TimeAggregator createTimer = new TimeAggregator();
     TimeAggregator deleteTimer = new TimeAggregator();
@@ -28,6 +29,7 @@ public class UserService {
     TimeAggregator updateTimer = new TimeAggregator();
 
     @GET
+    @Produces(MediaType.APPLICATION_JSON)
     public List<User> list() {
         double time = System.currentTimeMillis();
         List<User> res = User.listAll();
@@ -37,8 +39,9 @@ public class UserService {
     }
 
     @GET
+    @Produces(MediaType.APPLICATION_JSON)
     @Path("/{id}")
-    public User get(int id) {
+    public User get(@PathParam("id") int id) {
         return User.findById(id);
     }
 
@@ -54,10 +57,10 @@ public class UserService {
     }
 
     @PUT
-    @Path("/{id}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Transactional
-    public Response update(@PathParam int id, User user) {
+    public Response update(User user) {
+        int id = first_id;
 
         double time = System.currentTimeMillis();
 
@@ -79,9 +82,11 @@ public class UserService {
     }
 
     @DELETE
-    @Path("/{id}")
     @Transactional
-    public Response delete(@PathParam int id) {
+    public Response delete() {
+
+        int id = first_id;
+        first_id += 1;
 
         double time = System.currentTimeMillis();
 

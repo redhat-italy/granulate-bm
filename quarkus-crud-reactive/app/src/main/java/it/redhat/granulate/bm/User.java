@@ -9,7 +9,7 @@ import javax.persistence.Table;
 import io.quarkus.hibernate.reactive.panache.PanacheEntityBase;
 
 @Entity
-@Table(name = "quarkus_reactive_users")
+@Table(name = "users")
 public class User extends PanacheEntityBase {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

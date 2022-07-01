@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.inject.Singleton;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -20,8 +21,7 @@ import io.quarkus.hibernate.reactive.panache.Panache;
 import io.smallrye.mutiny.Uni;
 
 @Path("/users")
-@Produces(MediaType.APPLICATION_JSON)
-@Consumes(MediaType.APPLICATION_JSON)
+@Singleton
 public class UserService {
 
     TimeAggregator createTimer = new TimeAggregator();
@@ -29,8 +29,11 @@ public class UserService {
     TimeAggregator getTimer = new TimeAggregator();
     TimeAggregator updateTimer = new TimeAggregator();
 
+    private int first_id = 1;
+
 
     @GET
+    @Produces(MediaType.APPLICATION_JSON)
     public Uni<List<User>> list() {
         double time = System.currentTimeMillis();
         Uni<List<User>> res = User.listAll();
@@ -39,12 +42,14 @@ public class UserService {
     }
 
     @GET
+    @Produces(MediaType.APPLICATION_JSON)
     @Path("/{id}")
     public Uni<User> get(int id) {
         return User.findById(id);
     }
 
     @POST
+    @Consumes(MediaType.APPLICATION_JSON)
     public Uni<Response> create(User user) {
         double time = System.currentTimeMillis();
 
@@ -68,8 +73,11 @@ public class UserService {
     }
 
     @PUT
-    @Path("/{id}")
-    public Uni<Response> update(int id, User user) {
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Uni<Response> update(User user) {
+
+        int id = first_id;
+
         double time = System.currentTimeMillis();
 
         Uni<Integer> result = Panache.withTransaction(() -> 
@@ -86,8 +94,10 @@ public class UserService {
     }
 
     @DELETE
-    @Path("/{id}")
-    public Uni<Response> delete(int id) {
+    public Uni<Response> delete() {
+        int id = first_id;
+        first_id += 1;
+
         double time = System.currentTimeMillis();
 
         Uni<Boolean> result = Panache.withTransaction(() -> User.deleteById(id));
