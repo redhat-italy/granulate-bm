@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: grafana
   labels:
-    app: intel-granulate-poc
+    app: intel-poc
 spec:
   replicas: 1
   selector:
@@ -57,7 +57,7 @@ kind: Service
 metadata:
   name: grafana
   labels:
-    app: intel-granulate-poc
+    app: intel-poc
 spec:
   ports:
   - name: grafana

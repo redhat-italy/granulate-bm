@@ -14,5 +14,5 @@ datasources:
       httpHeaderName1: "Authorization"
     secureJsonData:
     #please note you have to replace the token from 
-      httpHeaderValue1: "Bearer {token}"
+      httpHeaderValue1: "Bearer "
       editable: true

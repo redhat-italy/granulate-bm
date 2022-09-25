@@ -3,11 +3,11 @@ kind: ClusterRoleBinding
 metadata:
   name: grafana-cluster-monitoring-binding
   labels:
-    app: intel-granulate-poc
+    app: intel-poc
 subjects:
   - kind: ServiceAccount
     name: grafana-serviceaccount
-    namespace: intel-granulate-poc 
+    namespace: intel-poc 
 roleRef:
   kind: ClusterRole
   name: cluster-monitoring-view

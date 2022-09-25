@@ -1,0 +1,15 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  labels:
+    k8s-app: quarkus-crud-reactive
+  name: quarkus-crud-reactive-monitor
+  namespace: intel-poc
+spec:
+  endpoints:
+  - interval: 30s
+    port: web
+    scheme: http
+  selector:
+    matchLabels:
+      app: quarkus-crud-reactive
