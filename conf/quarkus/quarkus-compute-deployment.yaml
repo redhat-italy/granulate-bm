@@ -5,7 +5,7 @@ metadata:
     app: quarkus-compute
   name: quarkus-compute
 spec:
-  replicas: 40
+  replicas: 3
   selector:
     matchLabels:
       deployment: quarkus-compute
