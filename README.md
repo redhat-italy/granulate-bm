@@ -1,4 +1,13 @@
-# granulate-bm
+# Granulate Benchmark
+
+The project to benchmark granulate optimizer
+
+## Deploy the project
+To deploy the project into an Openshift cluster check out the readme file into the *conf* directory
+
+
+
+
 
 To deploy the JBoss applications, run:
 `oc create -f conf/jboss/`
