@@ -1,5 +1,7 @@
 package it.redhat.benchmark;
 
+import java.time.Duration;
+
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 import javax.ws.rs.GET;
@@ -11,6 +13,9 @@ import javax.ws.rs.core.Response;
 
 import org.jboss.logging.Logger;
 
+import io.micrometer.core.instrument.MeterRegistry;
+import io.micrometer.core.instrument.Tags;
+
 @Path("/benchmark")
 public class BanchmarkResource {
 
@@ -18,12 +23,21 @@ public class BanchmarkResource {
 
     @Inject
     MatrixResource matrixResource;
+    @Inject
+    MeterRegistry registry;
 
     @PostConstruct
     void init() {
         this.matrixResource.initFloatMatrix();
     }
     
+    @POST
+    @Path("/exec")
+    public String execute() {
+        long timeInMillis = matrixResource.correlateFloatMatrix();
+        registry.timer("correlation_timer", Tags.of("name", "timer")).record(Duration.ofMillis(timeInMillis));
+        return new String("{\"exec\": \"success\", \"time\": " + timeInMillis + "}");
+    }
 
     @POST
     @Path("/float")

@@ -28,13 +28,15 @@ public class MatrixResource {
         LOG.info("Float Matrix " + FloatMatrix.N_ROWS + "x" + FloatMatrix.N_COLS + " initialized with random values");
     }
 
-    public void correlateFloatMatrix() {
-        double startTime = System.currentTimeMillis();
+    public long correlateFloatMatrix() {
+        long startTime = System.currentTimeMillis();
         this.floatMatrix.computeCorrelationMatrix();
-        double time = (System.currentTimeMillis() - startTime)/1000;
+        long time = (System.currentTimeMillis() - startTime);
+        double timeInSecs = new Long(time).doubleValue()/1000;
 
-        this.floatMatrixTimes.add(time);
-        LOG.info("Float Matrix benchmark completed with time " + time);
+        this.floatMatrixTimes.add(timeInSecs);
+        LOG.info("Float Matrix benchmark completed with time " + timeInSecs);
+        return time;
     }
 
     public TimeStats getFloatMatrixTimeStats() {
